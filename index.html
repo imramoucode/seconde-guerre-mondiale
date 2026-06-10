@@ -1,242 +1,236 @@
- · HTML
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>La Seconde Guerre mondiale</title>
-  <style>
-    /* ===== RESET ===== */
-    *{ margin:0; padding:0; box-sizing:border-box; }
- 
-    /* ===== PAGE ===== */
-    html{ scroll-behavior:smooth; }
-    body{ font-family:Arial, sans-serif; background-color:#f4f4f4; line-height:1.7; color:#222; }
- 
-    /* ===== MESSAGE ===== */
-    #hint{
-      position:fixed; top:80px; left:50%; transform:translateX(-50%);
-      background:#ff9800; color:white; padding:12px 18px; border-radius:10px;
-      font-weight:bold; z-index:3000; transition:opacity 0.5s;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>La Seconde Guerre mondiale</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(135deg,#0f172a,#1e293b,#334155);
+    color:#fff;
+    line-height:1.8;
+}
+
+/* ===== MESSAGE ===== */
+
+#hint{
+    position:fixed;
+    top:90px;
+    left:50%;
+    transform:translateX(-50%);
+    background:linear-gradient(45deg,#ff9800,#ff5722);
+    color:white;
+    padding:12px 22px;
+    border-radius:15px;
+    font-weight:600;
+    z-index:3000;
+    box-shadow:0 5px 20px rgba(0,0,0,.3);
+    animation:float 2s ease-in-out infinite;
+}
+
+/* ===== MENU ===== */
+
+nav{
+    position:fixed;
+    top:0;
+    width:100%;
+    z-index:2000;
+
+    background:rgba(13,27,42,.75);
+    backdrop-filter:blur(12px);
+
+    box-shadow:0 4px 25px rgba(0,0,0,.3);
+}
+
+nav ul{
+    list-style:none;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:15px;
+    padding:18px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    padding:10px 16px;
+    border-radius:10px;
+    transition:.3s;
+    font-weight:600;
+    position:relative;
+}
+
+nav a:hover{
+    background:#4da3ff;
+    transform:translateY(-3px);
+}
+
+nav a::after{
+    content:"";
+    position:absolute;
+    bottom:0;
+    left:50%;
+    width:0%;
+    height:3px;
+    background:white;
+    transition:.3s;
+    transform:translateX(-50%);
+}
+
+nav a:hover::after{
+    width:80%;
+}
+
+/* ===== CONTENU ===== */
+
+main{
+    max-width:1100px;
+    margin:140px auto 50px auto;
+    padding:25px;
+}
+
+h1{
+    text-align:center;
+    font-size:3rem;
+    margin-bottom:50px;
+
+    background:linear-gradient(45deg,#4da3ff,#00e5ff);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+    animation:fadeUp 1s ease;
+}
+
+h2{
+    margin-top:60px;
+    margin-bottom:20px;
+    color:#4ade80;
+    border-left:6px solid #4ade80;
+    padding-left:15px;
+
+    transition:.3s;
+}
+
+h2:hover{
+    transform:translateX(10px);
+}
+
+h3{
+    color:#fbbf24;
+    margin-top:30px;
+    margin-bottom:15px;
+}
+
+p,
+ul{
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(8px);
+
+    padding:20px;
+    border-radius:18px;
+
+    margin-bottom:20px;
+
+    box-shadow:0 5px 20px rgba(0,0,0,.2);
+
+    transition:.35s;
+}
+
+p:hover,
+ul:hover{
+    transform:translateY(-6px);
+    box-shadow:0 12px 30px rgba(0,0,0,.35);
+}
+
+ul{
+    padding-left:45px;
+}
+
+img{
+    display:block;
+    width:85%;
+    max-width:750px;
+    margin:30px auto;
+
+    border-radius:18px;
+
+    transition:.5s;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.4);
+}
+
+img:hover{
+    transform:scale(1.04);
+}
+
+iframe{
+    display:block;
+    margin:40px auto;
+    border-radius:18px;
+    box-shadow:0 10px 25px rgba(0,0,0,.4);
+}
+
+/* ===== ANIMATIONS ===== */
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(40px);
     }
- 
-    /* ===== MENU BAR ===== */
-    nav{
-      position:fixed; top:0; left:0; width:100%;
-      background:#0d1b2a; padding:18px 0; z-index:2000;
+    to{
+        opacity:1;
+        transform:translateY(0);
     }
- 
-    /* ===== MENU ===== */
-    nav ul{ list-style:none; display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:18px; }
- 
-    /* ===== ANIMATION ===== */
-    nav li{ transition:transform 0.3s ease; }
-    nav li:hover{ transform:scale(1.12); }
- 
-    /* ===== LIENS ===== */
+}
+
+@keyframes float{
+    0%,100%{
+        transform:translateX(-50%) translateY(0);
+    }
+    50%{
+        transform:translateX(-50%) translateY(-8px);
+    }
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media(max-width:768px){
+
+    h1{
+        font-size:2rem;
+    }
+
+    nav ul{
+        gap:8px;
+    }
+
     nav a{
-      color:white; text-decoration:none; font-size:16px; font-weight:bold;
-      padding:10px 16px; border-radius:8px; transition:0.3s;
+        font-size:13px;
+        padding:8px 10px;
     }
-    nav a:hover{ background:#4da3ff; }
- 
-    /* ===== CONTENU ===== */
-    main{ max-width:1000px; margin:140px auto 50px auto; padding:20px; }
-    h1{ text-align:center; color:#0d1b2a; font-size:42px; margin-bottom:40px; }
- 
-    /* ===== OFFSET POUR MENU FIXE ===== */
-    /* Chaque h2/h3 avec un id reçoit un pseudo-élément invisible au-dessus */
-    h2[id], h3[id]{
-      scroll-margin-top: 90px; /* compense la hauteur du menu fixe */
+
+    main{
+        margin-top:180px;
     }
- 
-    h2{ color:forestgreen; margin-top:50px; margin-bottom:20px; border-left:5px solid forestgreen; padding-left:10px; }
-    h3{ color:orange; margin-top:30px; margin-bottom:15px; }
-    p, ul{
-      background:rgb(2,2,2); padding:18px; border-radius:12px;
-      margin-bottom:20px; box-shadow:0 2px 8px rgba(0,0,0,0.1);
-    }
-    ul{ padding-left:40px; }
- 
-    /* ===== IMAGE ===== */
-    img{ display:block; margin:25px auto; width:80%; max-width:700px; border-radius:12px; border:4px solid #333; }
- 
-    /* ===== VIDEO ===== */
-    iframe{ display:block; margin:30px auto; max-width:100%; border-radius:12px; }
- 
-    /* ===== RESPONSIVE ===== */
-    @media screen and (max-width:768px){
-      nav a{ font-size:14px; padding:8px 10px; }
-      h1{ font-size:32px; }
-      main{ margin-top:180px; }
-    }
-  </style>
+}
+
+</style>
 </head>
-<body>
- 
-<!-- ===== MESSAGE ===== -->
-<div id="hint">
-  💡 Clique sur le menu pour naviguer vers la section
-</div>
- 
-<!-- ===== MENU ===== -->
-<nav>
-  <ul>
-    <li><a href="#definition">Définition</a></li>
-    <li><a href="#declenchement">Déclenchement</a></li>
-    <li><a href="#etapes">Étapes</a></li>
-    <li><a href="#expansion">Expansion</a></li>
-    <li><a href="#nazi">Régime nazi</a></li>
-    <li><a href="#juif">Génocide</a></li>
-    <li><a href="#consequences">Conséquences</a></li>
-    <li><a href="#video">Vidéo</a></li>
-  </ul>
-</nav>
- 
-<!-- ===== CONTENU ===== -->
-<main>
-  <h1>La Seconde Guerre mondiale</h1>
- 
-  <h2 id="definition">Qu'est-ce que la Seconde Guerre mondiale ?</h2>
-  <p style="background-color:#f4f4f4;">
-    La Seconde Guerre mondiale est un conflit mondial qui s'est déroulé de 1939 à 1945 et qui a impliqué la majorité des pays de la planète, divisés principalement en deux camps : les Alliés (comme le Royaume-Uni, l'Union soviétique et les États-Unis) et les puissances de l'Axe (notamment l'Allemagne nazie dirigée par Adolf Hitler, l'Italie fasciste de Benito Mussolini et le Japon impérial). Elle commence officiellement le 1er septembre 1939 lorsque l'Allemagne envahit la Pologne.
-  </p>
- 
-  <h2 id="declenchement">Comment s'est-elle déclenchée ?</h2>
-  <p style="background-color:#f4f4f4;">
-    La Seconde Guerre mondiale (1939–1945) trouve ses origines dans un ensemble de causes politiques, économiques et idéologiques qui remontent principalement à la fin de la Première Guerre mondiale. L'un des éléments déclencheurs majeurs est le traité signé en 1919 au château de Versailles, connu sous le nom de traité de Versailles.
-  </p>
-  <p style="background-color:#f4f4f4;">
-    Ce traité impose à l'Allemagne de lourdes sanctions territoriales, militaires et financières. Beaucoup d'Allemands vivent ces conditions comme une humiliation nationale, ce qui nourrit un fort sentiment de revanche.
-  </p>
-  <p style="background-color:#f4f4f4;">
-    Dans les années 1930, la crise économique mondiale provoquée par le krach boursier de 1929 fragilise les démocraties européennes. Le chômage et la pauvreté augmentent fortement, ce qui favorise la montée des régimes autoritaires.
-  </p>
-  <p style="background-color:#f4f4f4;">
-    En Allemagne, Adolf Hitler et le parti nazi exploitent le mécontentement populaire en promettant le rétablissement de la grandeur allemande, la suppression des contraintes du traité de Versailles et l'expansion territoriale.
-  </p>
-  <p style="background-color:#f4f4f4;">
-    Le déclenchement officiel du conflit survient le 1er septembre 1939 lorsque l'Allemagne envahit la Pologne. Deux jours plus tard, la France et le Royaume-Uni déclarent la guerre à l'Allemagne.
-  </p>
- 
-  <h2 id="etapes">Grandes étapes de la Seconde Guerre mondiale</h2>
- 
-  <h3>1️⃣ Début de la guerre (1939)</h3>
-  <ul style="background-color:#f4f4f4;">
-    <li>1er septembre 1939 : invasion de la Pologne.</li>
-    <li>3 septembre 1939 : déclaration de guerre de la France et du Royaume-Uni.</li>
-  </ul>
- 
-  <h3>2️⃣ Expansion de l'Axe (1940)</h3>
-  <ul style="background-color:#f4f4f4;">
-    <li>Invasion de plusieurs pays européens.</li>
-    <li>Bataille d'Angleterre.</li>
-  </ul>
- 
-  <h3>3️⃣ Invasion de l'Union soviétique (1941)</h3>
-  <ul style="background-color:#f4f4f4;">
-    <li>22 juin 1941 : opération Barbarossa.</li>
-  </ul>
- 
-  <h3>4️⃣ Entrée des États-Unis (1941)</h3>
-  <ul style="background-color:#f4f4f4;">
-    <li>7 décembre 1941 : attaque de Pearl Harbor.</li>
-  </ul>
- 
-  <h3>5️⃣ Tournant de la guerre (1942-1943)</h3>
-  <ul style="background-color:#f4f4f4;">
-    <li>Bataille de Stalingrad.</li>
-  </ul>
- 
-  <h3>6️⃣ Débarquements et libérations (1944-1945)</h3>
-  <ul style="background-color:#f4f4f4;">
-    <li>6 juin 1944 : débarquement en Normandie.</li>
-  </ul>
- 
-  <h3>7️⃣ Fin de la guerre (1945)</h3>
-  <ul style="background-color:#f4f4f4;">
-    <li>8 mai 1945 : capitulation de l'Allemagne.</li>
-    <li>2 septembre 1945 : capitulation du Japon.</li>
-  </ul>
- 
-  <h2 id="expansion">L'expansion de l'Allemagne durant la Seconde Guerre mondiale</h2>
-  <p style="background-color:#f4f4f4;">
-    L'Allemagne nazie a étendu son territoire durant la Seconde Guerre mondiale en envahissant plusieurs pays européens avant d'être progressivement repoussée à la fin du conflit.
-  </p>
-  <img src="https://histocarte.fr/wp-content/uploads/2017/06/Allemagne_1945-1949.png" alt="Carte de l'expansion de l'Allemagne">
- 
-  <h2 id="nazi">Comment le régime nazi a-t-il mis en place un système totalitaire en Allemagne ?</h2>
-  <p style="background-color:#f4f4f4;">
-    Le régime nazi est un exemple typique d'État totalitaire. Dès son arrivée au pouvoir en 1933, Adolf Hitler transforme l'Allemagne en dictature. Il supprime les libertés fondamentales, interdit les partis politiques d'opposition et contrôle les médias.
-  </p>
-  <p style="background-color:#f4f4f4;">
-    La propagande joue un rôle central. Sous la direction de Joseph Goebbels, les journaux, la radio, le cinéma et l'éducation sont utilisés pour diffuser l'idéologie nazie et glorifier le Führer.
-  </p>
-  <p style="background-color:#f4f4f4;">
-    La terreur est également un outil fondamental. La Gestapo traque les opposants et les premiers camps de concentration sont ouverts dès 1933.
-  </p>
- 
-  <h2 id="juif">Comment s'est déroulé le génocide des Juifs pendant la guerre ?</h2>
-  <p style="background-color:#f4f4f4;">
-    Le génocide des Juifs, appelé Shoah, constitue l'un des aspects les plus tragiques de la Seconde Guerre mondiale. Environ six millions de Juifs sont assassinés entre 1941 et 1945.
-  </p>
-  <p style="background-color:#f4f4f4;">
-    Des camps d'extermination sont construits, notamment Auschwitz-Birkenau, où les victimes sont gazées dès leur arrivée.
-  </p>
- 
-  <h2 id="consequences">Les conséquences de la Seconde Guerre mondiale</h2>
-  <p style="background-color:#f4f4f4;">
-    La Seconde Guerre mondiale est le conflit le plus meurtrier de l'histoire. L'Europe est détruite et l'Allemagne est divisée en plusieurs zones d'occupation.
-  </p>
-  <p style="background-color:#f4f4f4;">
-    Deux grandes puissances dominent ensuite le monde : les États-Unis et l'Union soviétique, ce qui entraîne la Guerre froide.
-  </p>
-  <p style="background-color:#f4f4f4;">
-    En 1945, l'ONU est créée afin de maintenir la paix mondiale.
-  </p>
- 
-  <h2 id="video">Vidéo récapitulative</h2>
-  <iframe width="560" height="315"
-    src="https://www.youtube-nocookie.com/embed/NAXpW0FzXOQ"
-    title="Vidéo récapitulative"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-    allowfullscreen>
-  </iframe>
-</main>
- 
-<!-- ===== JAVASCRIPT ===== -->
-<script>
-  const hint = document.getElementById("hint");
-  const nav  = document.querySelector("nav");
- 
-  /* Disparition du message au survol */
-  nav.addEventListener("mouseenter", function(){
-    hint.style.opacity = "0";
-    setTimeout(() => { hint.style.display = "none"; }, 500);
-  });
- 
-  /* Disparition automatique après 7 s */
-  setTimeout(() => {
-    hint.style.opacity = "0";
-    setTimeout(() => { hint.style.display = "none"; }, 500);
-  }, 7000);
- 
-  /* ===== SCROLL AVEC OFFSET (compense le menu fixe) ===== */
-  document.querySelectorAll('nav a[href^="#"]').forEach(link => {
-    link.addEventListener("click", function(e) {
-      e.preventDefault();                          // annule le scroll natif
-      const targetId = this.getAttribute("href").slice(1);
-      const target   = document.getElementById(targetId);
-      if (!target) return;
- 
-      const navHeight = nav.offsetHeight;          // hauteur réelle du menu
-      const top = target.getBoundingClientRect().top + window.scrollY - navHeight - 10;
- 
-      window.scrollTo({ top, behavior: "smooth" });
-    });
-  });
-</script>
- 
-</body>
-</html>
- 
